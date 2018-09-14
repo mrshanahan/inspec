@@ -20,6 +20,10 @@ describe 'inspec exec' do
   end
 
   it 'can sign, verify and install a signed profile' do
+    # The arcive install commands do not currently support windows and
+    # use specific linux extract tar commands. Since artifact is still
+    # experimental we are skipping it for now.
+    return if is_windows?
     prepare_examples do |dir|
       unique_key_name = SecureRandom.uuid()
       install_dir = File.join(dir, SecureRandom.uuid())
